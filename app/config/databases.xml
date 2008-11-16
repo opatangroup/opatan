@@ -2,18 +2,13 @@
 <configurations xmlns="http://agavi.org/agavi/1.0/config">
 	
 	<configuration>
-		<databases default="pdo_mysql_main">
+		<databases default="opatan">
 			
-			<database name="pdo_mysql_main" class="AgaviPdoDatabase">
-				<parameter name="dsn">mysql:host=localhost;dbname=agsmplapp</parameter>
+			<database name="opatan" class="AgaviPdoDatabase">
+				<parameter name="dsn">mysql:host=localhost;dbname=opatan</parameter>
 				<parameter name="username">root</parameter>
-				<parameter name="password"></parameter>
+				<parameter name="password">root</parameter>
 			</database>
-			
-			<database name="propelom" class="AgaviPropelDatabase">
-				<parameter name="config">%core.app_dir%/config/project-conf.php</parameter>
-			</database>
-			
 		</databases>
 	</configuration>
 	
