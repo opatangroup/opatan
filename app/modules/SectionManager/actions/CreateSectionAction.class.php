@@ -53,8 +53,28 @@ class SectionManager_CreateSectionAction extends ProjectBaseAction
 	 *                     1. The view that will be executed.
 	 *
 	 */
-	public function getDefaultViewName()
+	public function executeRead()
 	{
+		$sectionModel = $this->context->getModel('Section', 'SectionManager');
+
+		if ($this->getContext()->getUser()->hasAttribute('successfull', 'org.agavi.section')) {
+			$this->setAttribute('successfull', 1);
+			$this->getContext()->getUser()->removeAttribute('successfull', 'org.agavi.section');
+		} else {
+			$this->setAttribute('successfull', 0);
+		}
+
+		$htmlPages = $sectionModel->getHtmlPages();
+		$this->setAttribute('html_pages', $htmlPages);
+
+		return 'Input';
+	}
+
+	public function executeWrite(AgaviRequestDataHolder $rd)
+	{
+		$sectionModel = $this->context->getModel('Section', 'SectionManager');
+		$sectionModel->addSection($rd->getParameter('name'), $rd->getParameter('desc'), $rd->getParameter('html_page_id'));
+
 		return 'Success';
 	}
 }

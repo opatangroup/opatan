@@ -5,9 +5,7 @@ class SectionManager_CreateSectionInputView extends ProjectBaseView
 	public function executeHtml(AgaviRequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
-
-		// set the title
-		$this->setAttribute('_title', 'CreateSection Action');
+		$this->getContext()->getUser()->setAttribute('redirect', $this->getContext()->getRequest()->getUrl(), 'org.agavi.user.User');
 	}
 }
 
