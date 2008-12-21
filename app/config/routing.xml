@@ -5,7 +5,9 @@
 			<!-- this shows the welcome page after creating a project. remove it once you're done admiring it's shininess. -->
 			<!-- <route pattern="" module="%actions.default_module%" action="WelcomeToAgavi" /> -->
 			
-			<route pattern="^/$" module="SectionManager" action="CreateSection" />
+			<route pattern="^/$" module="Admin" action="AdminIndex" />
+			<route pattern="^/SectionManager$" module="SectionManager" action="CreateSection" name="SectionManager" />
+			<route pattern="^/HtmlPages$" module="HtmlPages" action="CreateHtmlPages" name="HtmlPages" />
 		</routes>
 	</configuration>
 </configurations>

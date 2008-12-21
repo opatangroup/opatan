@@ -23,6 +23,10 @@
 				<layouts default="default">
 					<layout name="default">
 						<layer name="content" />
+						<layer name="decorator">
+						      <parameter name="template">decorator</parameter>
+						      <parameter name="directory">%core.template_dir%</parameter>
+					        </layer>
 					</layout>
 				</layouts>
 				
