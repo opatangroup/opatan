@@ -28,8 +28,11 @@
 						      <parameter name="directory">%core.template_dir%</parameter>
 					        </layer>
 					</layout>
-				</layouts>
-				
+					<layout name="slot">
+						<layer name="sidebar"/>
+					</layout>
+				</layouts>			
+
 				<parameter name="http_headers">
 					<parameter name="Content-Type">text/html; charset=UTF-8</parameter>
 				</parameter>

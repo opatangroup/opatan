@@ -1,6 +1,6 @@
 <?php
 
-class Default_IndexAction extends ProjectBaseAction
+class Default_SideBarAction extends ProjectBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.
@@ -53,25 +53,11 @@ class Default_IndexAction extends ProjectBaseAction
 	 *                     1. The view that will be executed.
 	 *
 	 */
-	public function execute(AgaviRequestDataHolder $rd)
+	public function getDefaultViewName()
 	{
-		//$matchedRoutes = $this->context->getRequest()->getAttribute('matched_routes', 'org.agavi.routing');
-		
-		$requestedSection = $rd->getParameter('section');
-		if (!$requestedSection) {
-			$requestedSection = "Home";
-		}
-		$requestedSection = str_replace("_", " ", $requestedSection);
-
-		$sectionModel = $this->context->getModel('Section', 'SectionManager');		
-		$section = $sectionModel->getSection($requestedSection);
-		$htmlPageId = $section['html_page_id'];
-		
-		$htmlPagesModel = $this->context->getModel('HtmlPages', 'HtmlPages');
-		$htmlPage = $htmlPagesModel->getHtmlPage($htmlPageId);
-		
-		$this->setAttribute('html_title', $htmlPage['title']);
-		$this->setAttribute('html_text', $htmlPage['text']);
+		$sectionModel = $this->context->getModel('Section', 'SectionManager');
+		$sections = $sectionModel->getSections();
+		$this->setAttribute('sections', $sections);
 
 		return 'Success';
 	}
