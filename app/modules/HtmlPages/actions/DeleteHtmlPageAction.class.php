@@ -1,6 +1,6 @@
 <?php
 
-class HtmlPages_CreateHtmlPagesAction extends ProjectBaseAction
+class HtmlPages_DeleteHtmlPageAction extends ProjectBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.
@@ -35,10 +35,6 @@ class HtmlPages_CreateHtmlPagesAction extends ProjectBaseAction
 	 * execute*() being present, e.g. for a "write" Request, validateWrite() will
 	 * be run even if there is no executeWrite() method.
 	 */
-//	public function execute(AgaviRequestDataHolder $rd)
-//	{
-//		return 'Success';
-//	}
 
 	/**
 	 * This method returns the View name in case the Action doesn't serve the
@@ -54,27 +50,17 @@ class HtmlPages_CreateHtmlPagesAction extends ProjectBaseAction
 	 *
 	 */
 
-	public function executeRead()
+	public function executeRead(AgaviRequestDataHolder $rd)
 	{
-		$htmlModel = $this->context->getModel('HtmlPages', 'HtmlPages');
-		$htmlPages = $htmlModel->getHtmlPages();
-
-		$this->setAttribute('html_list', $htmlPages);
-
-		if ($this->getContext()->getUser()->hasAttribute('successfull', 'org.agavi.html')) {
-			$this->setAttribute('successfull', 1);
-			$this->getContext()->getUser()->removeAttribute('successfull', 'org.agavi.html');
-		} else {
-			$this->setAttribute('successfull', 0);
-		}
-
+		$this->setAttribute('id', $rd->getParameter('id'));
+	
 		return 'Input';
 	}
 
 	public function executeWrite(AgaviRequestDataHolder $rd)
 	{
 		$htmlModel = $this->context->getModel('HtmlPages', 'HtmlPages');
-		$htmlModel->addHtmlPage($rd->getParameter('title'), $rd->getParameter('text'));
+		$htmlModel->deleteHtmlPage($rd->getParameter('id'));
 
 		return 'Success';
 	}

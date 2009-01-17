@@ -1,6 +1,6 @@
 <?php
 
-class HtmlPages_CreateHtmlPagesAction extends ProjectBaseAction
+class HtmlPages_EditHtmlPageAction extends ProjectBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.
@@ -54,27 +54,20 @@ class HtmlPages_CreateHtmlPagesAction extends ProjectBaseAction
 	 *
 	 */
 
-	public function executeRead()
-	{
+	public function executeRead(AgaviRequestDataHolder $rd)
+	{		
 		$htmlModel = $this->context->getModel('HtmlPages', 'HtmlPages');
-		$htmlPages = $htmlModel->getHtmlPages();
-
-		$this->setAttribute('html_list', $htmlPages);
-
-		if ($this->getContext()->getUser()->hasAttribute('successfull', 'org.agavi.html')) {
-			$this->setAttribute('successfull', 1);
-			$this->getContext()->getUser()->removeAttribute('successfull', 'org.agavi.html');
-		} else {
-			$this->setAttribute('successfull', 0);
-		}
-
+		$htmlPage = $htmlModel->getHtmlPage($rd->getParameter('id'));
+		
+		$this->setAttribute('html_page', $htmlPage);		
+	
 		return 'Input';
 	}
 
 	public function executeWrite(AgaviRequestDataHolder $rd)
 	{
 		$htmlModel = $this->context->getModel('HtmlPages', 'HtmlPages');
-		$htmlModel->addHtmlPage($rd->getParameter('title'), $rd->getParameter('text'));
+		$htmlModel->updateHtmlPage($rd->getParameter('id'), $rd->getParameter('title'), $rd->getParameter('text'));
 
 		return 'Success';
 	}

@@ -55,7 +55,7 @@ class SectionManager_CreateSectionAction extends ProjectBaseAction
 	 */
 	public function executeRead()
 	{
-		$sectionModel = $this->context->getModel('Section', 'SectionManager');
+		$htmlModel = $this->context->getModel('HtmlPages', 'HtmlPages');
 
 		if ($this->getContext()->getUser()->hasAttribute('successfull', 'org.agavi.section')) {
 			$this->setAttribute('successfull', 1);
@@ -64,7 +64,7 @@ class SectionManager_CreateSectionAction extends ProjectBaseAction
 			$this->setAttribute('successfull', 0);
 		}
 
-		$htmlPages = $sectionModel->getHtmlPages();
+		$htmlPages = $htmlModel->getHtmlPages();
 		$this->setAttribute('html_pages', $htmlPages);
 
 		return 'Input';

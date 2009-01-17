@@ -7,13 +7,12 @@
 			
 			<route pattern="^/$" module="Default" action="Index" name="Home" />
 			<route pattern="^/Section/(section:\w+)$" module="Default" action="Index" />
-				<!-- <defaults>
-					<default for="section">Home</default>
-				</defaults>
-			</route -->
 			<route pattern="^/Admin$" module="Admin" action="AdminIndex" name="Admin" />
 			<route pattern="^/SectionManager$" module="SectionManager" action="CreateSection" name="SectionManager" />
 			<route pattern="^/HtmlPages$" module="HtmlPages" action="CreateHtmlPages" name="HtmlPages" />
+			<route pattern="^/HtmlPages/ViewHtmlPage/(id:\d+)$" module="HtmlPages" action="ViewHtmlPage" name="ViewHtmlPage" />
+			<route pattern="^/HtmlPages/EditHtmlPage/id/(id:\d+)$" module="HtmlPages" action="EditHtmlPage" name="EditHtmlPage" />
+			<route pattern="^/HtmlPages/DeleteHtmlPage/id/(id:\d+)$" module="HtmlPages" action="DeleteHtmlPage" name="DeleteHtmlPage" />
 		</routes>
 	</configuration>
 </configurations>
